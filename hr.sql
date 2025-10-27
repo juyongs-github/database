@@ -97,3 +97,22 @@ AND department_id IS NOT NULL;
 SELECT employee_id, first_name, job_id, salary * commission_pct AS commission
 FROM EMPLOYEES
 WHERE commission_pct IS NOT NULL
+
+-- 함수
+-- 18. FIRST_NAME이 Curtis인 사람의 first_name, last_name, email, phone_number, job_id 조회
+-- 단, job_id 결과는 소문자로 출력
+SELECT first_name, last_name, email, phone_number, LOWER(job_id)
+FROM EMPLOYEES
+WHERE first_name = 'Curtis';
+
+-- 19. 부서번호가 60, 70, 80, 90인 사원들의 사원번호, first_name, hire_date, job_id 조회
+-- 단, job_id가 IT_PROG인 사원의 경우 프로그래머로 변경하여 출력
+SELECT employee_id, first_name, hire_date, REPLACE(job_id, 'IT_PROG', '프로그래머')
+FROM EMPLOYEES
+WHERE department_id IN (60, 70, 80, 90);
+
+-- 20. job_id가 AD_PRES, PU_CLERK인 사원들의 사원번호, first_name, last_name, 부서번호, job_id 조회
+-- 단, 사원명은 first_name과 last_name을 연결하여 출력
+SELECT first_name || ' ' || last_name, department_id, job_id
+FROM EMPLOYEES
+WHERE job_id IN ('AD_PRES', 'PU_CLERK');
